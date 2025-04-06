@@ -1,0 +1,24 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    schema: "./db/migration"
+    queries: "./db/query"
+    gen:
+      go:
+        package: "db"
+        out: "./db/sqlc"
+        sql_package: "database/sql"
+        overrides:
+          - db_type: "pg_catalog.text"
+            go_type: "string"
+
+# cloud:
+#     organization: ""
+#     project: ""
+#     hostname: ""
+# servers: []
+# overrides:
+#     go: null
+# plugins: []
+# rules: []
+# options: {}
