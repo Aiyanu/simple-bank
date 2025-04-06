@@ -33,6 +33,8 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '^1.24.2'
+    - name: Install golang-migrate
+      run: $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$os-$arch.tar.gz | tar xvz
 
     - name: Run Migrations
       run : make migrateup
