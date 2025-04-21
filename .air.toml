@@ -1,0 +1,42 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # Build command for Windows
+  cmd = "go build -o ./tmp/main.exe ."
+  bin = "tmp/main.exe"
+  
+  # Watch these directories (matches your project structure)
+  include_dir = ["api", "db", "util", "."]
+  
+  # Only watch Go files and environment files
+  include_ext = ["go", "env"]
+  
+  # Exclude test files and vendor directory
+  exclude_regex = ["_test.go"]
+  exclude_dir = ["vendor", "tmp"]
+  
+  # Copy app.env to tmp directory before build
+  pre_cmd = ["copy app.env tmp\\app.env"]
+  
+  delay = 1000  # 1 second delay after changes
+  log = "air-build.log"
+  stop_on_error = true
+  exclude_unchanged = true
+
+[color]
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[log]
+  time = false
+  silent = false
+
+[misc]
+  clean_on_exit = true
+
+[screen]
+  clear_on_rebuild = true
+  keep_scroll = true
